@@ -47,6 +47,12 @@ variable "github_file" {
   default     = "actions-runner-linux-x64-2.317.0.tar.gz"
 }
 
+variable "github_version" {
+    description = "github version"
+    type        = string
+    default = "v2.317.0"
+}
+
 variable "github_code" {
   description = "github code"
   type        = string

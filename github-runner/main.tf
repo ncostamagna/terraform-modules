@@ -10,12 +10,13 @@ resource "aws_instance" "ec2_runner" {
     volume_size = 30
   }
 
-  user_data = templatefile("./user_data.tftpl", { github_token = var.github_token,
+  user_data = templatefile("${path.module}/user_data.tftpl", { github_token = var.github_token,
     github_url    = var.github_url,
     github_name   = var.github_name,
     github_labels = var.github_labels,
     github_file   = var.github_file,
     github_code   = var.github_code
+    github_version = var.github_version
   })
 
   tags = var.tags

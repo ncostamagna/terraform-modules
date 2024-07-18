@@ -62,3 +62,8 @@ variable "security_group_name" {
   type        = string
   default     = "runner_sg"
 }
+
+variable "ec2_key_id" {
+    description = "The key pair to use for the instance"
+    type        = string
+}

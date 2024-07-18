@@ -23,7 +23,7 @@ newgrp docker
 sudo -u ubuntu -i <<'EOF'
 cd /home/ubuntu
 mkdir actions-runner && cd actions-runner
-curl -o ${github_file} -L https://github.com/actions/runner/releases/download/v2.317.0/${github_file}
+curl -o ${github_file} -L https://github.com/actions/runner/releases/download/${github_version}/${github_file}
 echo "${github_code}  ${github_file}" | shasum -a 256 -c
 tar xzf ./${github_file}
 

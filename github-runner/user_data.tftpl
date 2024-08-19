@@ -20,6 +20,16 @@ sudo usermod -aG docker $USER
 
 newgrp docker
 
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=testdb -p 3306:3306 -d mysql:8
+
+# https://stackoverflow.com/questions/64015505/run-shell-script-on-every-restart-of-ec2-instance
+# crearing a file in /var/lib/cloud/scripts/per-boot/
+# with this script
+# sudo -u ubuntu -i <<'EOF'
+#cd /home/ubuntu/actions-runner
+#sudo ./svc.sh start
+#EOF
+
 sudo -u ubuntu -i <<'EOF'
 cd /home/ubuntu
 mkdir actions-runner && cd actions-runner
@@ -31,3 +41,9 @@ tar xzf ./${github_file}
 sudo ./svc.sh install
 sudo ./svc.sh start
 EOF
+
+echo "sudo -u ubuntu -i <<'EOF'
+cd /home/ubuntu/actions-runner
+sudo ./svc.sh start
+EOF" > /var/lib/cloud/scripts/per-boot/my-script.sh
+
